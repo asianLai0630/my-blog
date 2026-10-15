@@ -1,0 +1,11 @@
+{
+  "head": "<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>作品集｜生活提案誌</title><meta name=\"description\" content=\"旅行、日常、生活提案與自我成長的個人文章誌。\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">\n<link rel=\"stylesheet\" href=\"/assets/style.css\">",
+  "header": "header-72e8ae67e006",
+  "footer": "footer-08676bbbec11",
+  "scripts": [
+    "/assets/site.js",
+    "/assets/about21-controls.js",
+    "/assets/about22-controls.js",
+    "/assets/v29-icons.js"
+  ]
+}

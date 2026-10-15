@@ -1,0 +1,25 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getArticleFeed } from '../lib/articles';
+
+interface Props {
+  head: string;
+  header: string;
+  footer: string;
+  scripts: string[];
+}
+const { head, header, footer, scripts } = Astro.props;
+const articleData = JSON.stringify(await getArticleFeed()).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="zh-Hant">
+  <head><Fragment set:html={head} /><link rel="stylesheet" href="/assets/article-media.css" /></head>
+  <body>
+    <Header variant={header} />
+    <slot />
+    <Footer variant={footer} />
+    <script is:inline type="application/json" id="article-data" set:html={articleData}></script>
+    {scripts.map(src => <script is:inline src={src} defer></script>)}
+  </body>
+</html>

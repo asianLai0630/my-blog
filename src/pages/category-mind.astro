@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import metadata from '../content/pages/category-mind.json';
+import { renderArchive } from '../lib/archive-renderer';
+const content = await renderArchive('category', 'think');
+---
+<BaseLayout {...metadata}>
+  <main id="app" class="wrap"><Fragment set:html={content} /></main>
+</BaseLayout>

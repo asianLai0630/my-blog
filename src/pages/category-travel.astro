@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import metadata from '../content/pages/category-travel.json';
+import { renderArchive } from '../lib/archive-renderer';
+const content = await renderArchive('category', 'walk');
+---
+<BaseLayout {...metadata}>
+  <main id="app" class="wrap"><Fragment set:html={content} /></main>
+</BaseLayout>

@@ -1,0 +1,37 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedArticles } from '../../lib/articles';
+import categories from '../../data/categories.json';
+
+export async function getStaticPaths() {
+  return (await getPublishedArticles()).map(article => ({ params: { slug: article.id }, props: { article } }));
+}
+const { article } = Astro.props;
+const { Content } = await render(article);
+const data = article.data;
+const category = categories.find(category => category.id === data.category)!;
+const routes = { walk: '/category-travel.html', life: '/category-life.html', think: '/category-mind.html', grow: '/category-learn.html' };
+const group = category.groups.find(group => group.items.some(item => item[0] === data.subcategory))!;
+const escape = (value: string) => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]!));
+const head = `<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(data.title)}｜生活手札</title><meta name="description" content="${escape(data.description)}"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/article-toc.css">`;
+const scripts = ['/assets/site.js', '/assets/about21-controls.js', '/assets/about22-controls.js', '/assets/v29-icons.js', '/assets/article-toc.js'];
+---
+<BaseLayout head={head} header={data.headerVariant} footer={data.footerVariant} scripts={scripts}>
+  <main id="app" class="wrap">
+    <article class="detail">
+      <div class="breadcrumb"><a href="/index.html">首頁</a> ／ <a href={routes[data.category]}>{category.title}</a> ／ {data.subcategory}</div>
+      {!data.hideEyebrow && <span class="eyebrow">{group.title} / {data.subcategory}</span>}
+      <h1>{data.title}</h1>
+      <p>{data.date.replaceAll('-', '.')}　·　約 {data.readMinutes} 分鐘閱讀</p>
+      {data.cover ? <div class="detail-cover hero-hover">
+        <img src={data.cover} alt={data.coverAlt || data.title} class="article-hero-image" />
+        <div class="hero-overlay"><p>{data.coverAlt || data.title}</p></div>
+      </div> : <div class="placeholder detail-cover">文章主圖預留區</div>}
+      <div class:list={['detail-body', data.bodyClass]}>
+        <Content />
+        <button class="back" type="button" onclick="history.back()">← 返回上一篇頁面</button>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

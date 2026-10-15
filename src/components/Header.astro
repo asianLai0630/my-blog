@@ -1,0 +1,9 @@
+---
+interface Props { variant: string }
+const variants = import.meta.glob('./markup/header-*.html', {
+  eager: true, query: '?raw', import: 'default',
+});
+const markup = variants[`./markup/${Astro.props.variant}.html`];
+if (typeof markup !== 'string') throw new Error('Unknown header variant');
+---
+<Fragment set:html={markup} />

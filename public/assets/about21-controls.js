@@ -1,0 +1,2 @@
+
+(()=>{let index=0,transitionId=0;function show(n){const photo=document.getElementById('b21Photo');if(!photo)return;index=(n+5)%5;const id=++transitionId;photo.classList.add('is-changing');setTimeout(()=>{if(id!==transitionId||!photo.isConnected)return;photo.setAttribute('aria-label',`個人照片預留區 ${index+1}`);photo.querySelector('span').textContent=`個人照片預留區　${String(index+1).padStart(2,'0')}`;photo.classList.remove('is-changing')},210)}setInterval(()=>{if(document.visibilityState==='visible'&&document.getElementById('b21Photo'))show(index+1)},5000)})();
