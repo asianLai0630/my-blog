@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-7"
 title: "那些不急著得到答案的日子"
 date: "2026-06-29"
 category: "think"

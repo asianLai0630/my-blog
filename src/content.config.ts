@@ -7,6 +7,7 @@ const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
   schema: z.object({
     title: z.string().min(1),
+    urlSlug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
     date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, '日期請使用 YYYY-MM-DD').refine(value => {
       const parsed = new Date(value);
       return !Number.isNaN(parsed.valueOf()) && parsed.toISOString().slice(0, 10) === value;
@@ -16,8 +17,8 @@ const articles = defineCollection({
     description: z.string().min(1),
     readMinutes: z.number().int().positive().default(5),
     draft: z.boolean().default(false),
-    featuredOrder: z.number().int().positive().optional(),
-    cover: z.string().startsWith('/images/').optional(),
+    featuredOrder: z.preprocess(value => value === '' || value == null ? undefined : value, z.number().int().positive().optional()),
+    cover: z.preprocess(value => value === '' || value == null ? undefined : value, z.string().startsWith('/images/').optional()),
     coverAlt: z.string().default(''),
     bodyClass: z.enum(['', 'magazine-article']).default(''),
     hideEyebrow: z.boolean().default(false),

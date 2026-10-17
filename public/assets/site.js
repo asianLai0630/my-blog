@@ -85,13 +85,14 @@ function routeToPage(route){
  return 'index.html';
 }
 function prefix(){return location.pathname.includes('/articles/')?'../':'';}
+function currentPageName(){const file=location.pathname.replace(/\/$/,'').split('/').pop()||'index';return file.endsWith('.html')?file:file+'.html';}
 function rewriteLinks(){
  document.querySelectorAll('a[href^="#"]').forEach(a=>{const route=a.getAttribute('href').slice(1);if(!/^(home|about|category\/|article\/|portfolio\/)/.test(route))return;a.setAttribute('href',prefix()+routeToPage(route));a.removeAttribute('onclick')});
 }
 function closeMenus(){document.querySelectorAll('.nav-item.open').forEach(item=>{item.classList.remove('open');const btn=item.querySelector('[data-nav-toggle]');if(btn)btn.setAttribute('aria-expanded','false')})}
-function currentCategoryId(){const file=location.pathname.split('/').pop();return ({'category-travel.html':'walk','category-life.html':'life','category-mind.html':'think','category-learn.html':'grow'})[file]||'walk';}
+function currentCategoryId(){const file=currentPageName();return ({'category-travel.html':'walk','category-life.html':'life','category-mind.html':'think','category-learn.html':'grow'})[file]||'walk';}
 function refreshCategory(){
- const file=location.pathname.split('/').pop();if(!file.startsWith('category-') && file!=='search.html')return;
+ const file=currentPageName();if(!file.startsWith('category-') && file!=='search.html')return;
  const root=document.getElementById('app');root.innerHTML=categoryPage(file==='search.html'?'all':currentCategoryId(),file==='search.html'?searchTerm:'');
  rewriteLinks();bindCategory();
 }
@@ -125,7 +126,7 @@ function initSite(){
  const sub=params.get('sub');const q=params.get('q');
  if(sub)currentFilter=sub;
  if(q)searchTerm=q;
- const pageName=location.pathname.split('/').pop()||'index.html';
+ const pageName=currentPageName();
  if(pageName==='index.html')document.getElementById('app').innerHTML=home();
  if(pageName.startsWith('category-')||pageName==='search.html')refreshCategory();
  rewriteLinks();bindNav();setupSearch();initCarousel();initStats();

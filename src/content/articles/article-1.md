@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-1"
 title: "東京散步：把一天留給沒有計畫的街道"
 date: "2026-09-18"
 category: "walk"

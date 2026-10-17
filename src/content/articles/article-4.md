@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-4"
 title: "讓週末慢下來的五個生活提案"
 date: "2026-08-14"
 category: "life"

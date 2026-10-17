@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-11"
 title: "巷弄裡的獨立書店與選物空間"
 date: "2026-04-20"
 category: "walk"

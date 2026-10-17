@@ -86,6 +86,10 @@ npm run build
 npm run verify
 ```
 
-檢查通過後，把新的 `dist/` 內容部署到主機。移除文章或改成草稿時，主機上的舊文章檔也應一併移除；建議用整包部署取代只上傳新增檔案，以免舊頁仍可被直接開啟。
+使用 Cloudflare Pages 的 Git 整合後，將原始碼修改提交到 GitHub，Cloudflare 會重新建置並部署整個網站。若使用其他靜態主機，檢查通過後可部署新的 `dist/`；移除文章或改成草稿時，主機上的舊文章檔也應一併移除，建議整包部署。
 
 不要直接修改 `dist/`，下次建置會覆寫。網站目前以網域根目錄部署為前提。
+
+## 用 CMS 管理
+
+目前已加入 `/admin/` 文章管理介面。首次建立 Cloudflare Pages、啟用 GitHub 登入及日後用後台發布文章的流程，請看 [CMS 與 Cloudflare Pages 設定指南](CMS_CLOUDFLARE_GUIDE.md)。正式啟用前仍可使用本篇的 Markdown 編輯方式。

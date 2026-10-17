@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-3"
 title: "奧地利 哈修塔特｜在山湖之間，遇見一段不必匆忙的時光"
 date: "2026-10-10"
 category: "walk"

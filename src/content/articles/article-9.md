@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-9"
 title: "一本書帶來的三個小提醒"
 date: "2026-05-23"
 category: "grow"

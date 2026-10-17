@@ -20,7 +20,7 @@ npm run verify
 npm run preview
 ```
 
-正式部署上傳 `dist/` 內容；`src/` 和 `node_modules/` 不需要上傳。`dist/` 的檔案不可直接編輯，重新建置會覆寫。網站目前以網域根目錄部署為前提。
+`dist/` 是建置後的靜態網站，不能直接編輯，重新建置會覆寫。這個版本已含 CMS 登入 Functions，正式上線請依下方 Cloudflare Pages 指南使用 Git 整合部署整個專案。`node_modules/` 不需提交到 GitHub，Cloudflare 會安裝相依套件。網站目前以網域根目錄部署為前提。
 
 ## 專案結構
 
@@ -53,4 +53,12 @@ npm run preview
 
 每次修改後執行 `npm run build` 與 `npm run verify`。
 
-可執行 `npm run test:content` 驗證新增、修改、草稿隱藏與自動產生文章頁面的完整流程；測試文章會自動清除。未設定主機、自動部署或 CMS，正式發布仍需建置後上傳 `dist/`。
+可執行 `npm run test:content` 驗證新增、修改、草稿隱藏與自動產生文章頁面的完整流程；測試文章會自動清除。
+
+## CMS 與 Cloudflare Pages
+
+已加入 `/admin/` 的 Decap CMS 文章後台，儲存庫設定為 `asianLai0630/my-blog` 的 `main` 分支。使用 Cloudflare Pages Functions 處理 GitHub 登入，網站其他頁面維持靜態輸出。
+
+首次上線與登入設定請看 [CMS 與 Cloudflare Pages 設定指南](CMS_CLOUDFLARE_GUIDE.md)。目前尚未替你的帳號建立 Pages 專案、設定 OAuth 金鑰或發布這次修改。網站與登入設定完成後，CMS 提交文章到 GitHub，可由 Cloudflare Git 整合觸發自動發布。
+
+`npm run test:cms` 可執行登入邏輯與後台設定測試。CMS 的登入 Functions 位於 `functions/`，不能只上傳 `dist/` 來部署後台登入功能。

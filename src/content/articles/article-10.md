@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-10"
 title: "旅行前，我會做的預算與交通整理"
 date: "2026-05-01"
 category: "walk"

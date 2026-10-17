@@ -48,7 +48,7 @@
     ];
 
     const isHallstatt =
-      window.location.pathname.endsWith("/article-3.html");
+      /\/article-3(?:\.html)?\/?$/.test(window.location.pathname);
 
     // 自動產生目錄項目
     headings.forEach((heading, i) => {

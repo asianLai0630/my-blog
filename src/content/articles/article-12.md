@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-12"
 title: "關於成長，不再只用完成多少來衡量"
 date: "2026-04-04"
 category: "grow"

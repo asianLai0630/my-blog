@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-6"
 title: "關係裡的距離，也是一種溫柔"
 date: "2026-07-16"
 category: "think"

@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-2"
 title: "京都咖啡日記：午後的三間小店"
 date: "2026-09-06"
 category: "walk"

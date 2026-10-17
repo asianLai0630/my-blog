@@ -1,4 +1,5 @@
 ---
+urlSlug: "article-5"
 title: "最近常用的三樣日常好物"
 date: "2026-07-30"
 category: "life"
