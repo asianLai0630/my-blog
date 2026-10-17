@@ -26,6 +26,15 @@ try {
   assert.ok(read('search.html').includes(`<h3>${title}</h3>`), 'All-article static list did not update');
   assert.ok(read('articles/content-check-temporary.html').includes('Markdown 章節驗證'));
   assert.ok(feed().posts[0].searchText.includes('正文限定搜尋驗證詞'));
+  assert.equal(feed().posts[0].date, '2099.01.01');
+  // CMS/YAML serializers can write unquoted dates, which Astro parses as Date objects.
+  fs.writeFileSync(file, article(title, false).replace('date: "2099-01-01"', 'date: 2099-01-01'));
+  build();
+  assert.equal(feed().posts[0].date, '2099.01.01');
+  assert.ok(read('articles/content-check-temporary.html').includes('2099.01.01'));
+  fs.writeFileSync(file, article(title, false).replace('date: "2099-01-01"', 'date: 2099-01-01T00:00:00.000Z'));
+  build();
+  assert.equal(feed().posts[0].date, '2099.01.01');
   fs.writeFileSync(file, article(title + '已修改', false));
   build();
   assert.equal(feed().posts[0].title, title + '已修改');
