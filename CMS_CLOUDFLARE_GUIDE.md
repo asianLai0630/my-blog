@@ -10,7 +10,7 @@
 
 不要上傳 `node_modules/`、`dist/`、`.astro/`、`.env` 或 `.dev.vars`。後兩種檔案可能含金鑰，已加入 `.gitignore`。
 
-CMS 的儲存庫與路徑設定在 `src/data/cms.json`：目前使用 `asianLai0630/my-blog`、`main`，`contentRoot` 為空字串，文章存回 `src/content/articles/`，圖片存回 `public/images/uploads/`。
+CMS 的儲存庫與路徑設定在 `src/data/cms.js`：目前使用 `asianLai0630/my-blog`、`main`，`contentRoot` 為空字串，文章存回 `src/content/articles/`，圖片存回 `public/images/uploads/`。使用一般 JavaScript 模組，避免較舊的 Functions 打包器無法解析 JSON import attributes。
 
 ## 2. 建立 Cloudflare Pages
 

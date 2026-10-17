@@ -1,5 +1,5 @@
 import categories from '../../data/categories.json';
-import settings from '../../data/cms.json';
+import settings from '../../data/cms.js';
 
 export function GET() {
   const root = settings.contentRoot ? settings.contentRoot.replace(/\/$/, '') + '/' : '';

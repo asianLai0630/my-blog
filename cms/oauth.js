@@ -1,4 +1,4 @@
-import settings from '../src/data/cms.json' with { type: 'json' };
+import settings from '../src/data/cms.js';
 
 const cookieName = '__Host-cms-oauth';
 const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
